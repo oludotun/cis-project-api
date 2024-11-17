@@ -30,13 +30,13 @@ VALUES
 ('Circuit Analysis', 'Understanding the principles of circuit analysis.', CURRENT_TIMESTAMP, NULL);
 
 -- Seed data for lab
-INSERT INTO lab (course_id, title, answer, description, created_at, updated_at)
+INSERT INTO lab (course_id, title, initial_state, answer, description, created_at, updated_at)
 VALUES 
-(1, 'Ohm\'s Law Lab', '{"correct_answer": "V=IR"}', 'Lab to understand Ohm\'s Law.', CURRENT_TIMESTAMP, NULL),
-(2, 'Version Control Lab', '{"correct_answer": "GitHub"}', 'Lab to practice version control with Git.', CURRENT_TIMESTAMP, NULL),
-(3, 'Linear Regression Lab', '{"correct_answer": "y=mx+b"}', 'Lab to implement linear regression.', CURRENT_TIMESTAMP, NULL),
-(4, 'Sorting Algorithms Lab', '{"correct_answer": "QuickSort"}', 'Lab to learn about sorting algorithms.', CURRENT_TIMESTAMP, NULL),
-(5, 'AC Circuit Analysis Lab', '{"correct_answer": "Impedance"}', 'Lab to analyze AC circuits.', CURRENT_TIMESTAMP, NULL);
+(1, 'Ohm\'s Law Lab', '{"devices": [{"id": "device1", "type": "Contactor", "data": {"name": "Contactor", "ref": "k1"}, "position": {"x": 0, "y": 50}}, {"id": "device2", "type": "PowerSource", "data": {"value": "24", "type": "DC"}, "position": {"x": -200, "y": 200}}, {"id": "device3", "type": "Lamp", "data": {"name": "Lamp", "ref": "L1"}, "position": {"x": 200, "y": 200}}, {"id": "pushbutton1", "type": "PushButton", "data": {"defaultState": "N/O", "ref": "SW1"}, "position": {"x": -200, "y": 50}}]}', '{"correct_answer": "V=IR"}', 'Lab to understand Ohm\'s Law.', CURRENT_TIMESTAMP, NULL),
+(2, 'Version Control Lab', '{"devices": [{"id": "device1", "type": "Contactor", "data": {"name": "Contactor", "ref": "k1"}, "position": {"x": 0, "y": 50}}, {"id": "device2", "type": "PowerSource", "data": {"value": "24", "type": "DC"}, "position": {"x": -200, "y": 200}}, {"id": "device3", "type": "Lamp", "data": {"name": "Lamp", "ref": "L1"}, "position": {"x": 200, "y": 200}}]}', '{"correct_answer": "GitHub"}', 'Lab to practice version control with Git.', CURRENT_TIMESTAMP, NULL),
+(3, 'Linear Regression Lab', '{"devices": [{"id": "device1", "type": "Contactor", "data": {"name": "Contactor", "ref": "k1"}, "position": {"x": 0, "y": 50}}, {"id": "device2", "type": "PowerSource", "data": {"value": "24", "type": "DC"}, "position": {"x": -200, "y": 200}}, {"id": "device3", "type": "Lamp", "data": {"name": "Lamp", "ref": "L1"}, "position": {"x": 200, "y": 200}}]}', '{"correct_answer": "y=mx+b"}', 'Lab to implement linear regression.', CURRENT_TIMESTAMP, NULL),
+(4, 'Sorting Algorithms Lab', '{"devices": [{"id": "device1", "type": "Contactor", "data": {"name": "Contactor", "ref": "k1"}, "position": {"x": 0, "y": 50}}, {"id": "device2", "type": "PowerSource", "data": {"value": "24", "type": "DC"}, "position": {"x": -200, "y": 200}}, {"id": "device3", "type": "Lamp", "data": {"name": "Lamp", "ref": "L1"}, "position": {"x": 200, "y": 200}}]}', '{"correct_answer": "QuickSort"}', 'Lab to learn about sorting algorithms.', CURRENT_TIMESTAMP, NULL),
+(5, 'AC Circuit Analysis Lab', '{"devices": [{"id": "device1", "type": "Contactor", "data": {"name": "Relay", "ref": "RLY1"}, "position": {"x": -20, "y": 50}}, {"id": "device2", "type": "PowerSource", "data": {"value": "12", "type": "AC"}, "position": {"x": -200, "y": 200}}, {"id": "device3", "type": "Lamp", "data": {"name": "Buzzer", "ref": "BZ1"}, "position": {"x": 200, "y": 200}}, {"id": "device4", "type": "Lamp", "data": {"name": "Buzzer", "ref": "BZ2"}, "position": {"x": 0, "y": 200}}]}', '{"correct_answer": "Impedance"}', 'Lab to analyze AC circuits.', CURRENT_TIMESTAMP, NULL);
 
 -- Seed data for student_course
 INSERT INTO student_course (student_id, course_id, enrolled_at)
@@ -57,10 +57,10 @@ VALUES
 (1, 5, CURRENT_TIMESTAMP);
 
 -- Seed data for student_lab
-INSERT INTO student_lab (student_id, course_id, lab_id, started_at, submission, score, updated_at)
+INSERT INTO student_lab (student_id, course_id, lab_id, started_at, score, updated_at)
 VALUES 
-(1, 1, 1, CURRENT_TIMESTAMP, '{"answer": "V=IR"}', 100, NULL),
-(2, 2, 2, CURRENT_TIMESTAMP, '{"answer": "GitHub"}', 95, NULL),
-(3, 3, 3, CURRENT_TIMESTAMP, '{"answer": "y=mx+b"}', 90, NULL),
-(4, 4, 4, CURRENT_TIMESTAMP, '{"answer": "QuickSort"}', 85, NULL),
-(1, 5, 5, CURRENT_TIMESTAMP, '{"answer": "Impedance"}', 80, NULL);
+(1, 1, 1, CURRENT_TIMESTAMP, 100, NULL),
+(2, 2, 2, CURRENT_TIMESTAMP, 95, NULL),
+(3, 3, 3, CURRENT_TIMESTAMP, 90, NULL),
+(4, 4, 4, CURRENT_TIMESTAMP, 85, NULL),
+(1, 5, 5, CURRENT_TIMESTAMP, 80, NULL);
