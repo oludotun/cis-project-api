@@ -5,6 +5,9 @@ use Slim\Routing\RouteCollectorProxy;
 
 use App\Controllers\PingController;
 use App\Controllers\UserController;
+use App\Controllers\StudentController;
+use App\Middleware\AuthenticationMiddleware;
+use App\Models\Student;
 
 return function (App $app) {
     $app->group('/api', function (RouteCollectorProxy $group) {
@@ -24,9 +27,27 @@ return function (App $app) {
 
         // Student Endpoints
         $group->group('/students', function (RouteCollectorProxy $student) {
-            $student->get('/{id}', [StudentController::class, 'getById']);
             $student->post('', [StudentController::class, 'create']);
+            $student->get('', [StudentController::class, 'getLoggedInStudent'])
+                ->add(new AuthenticationMiddleware);
+            $student->options('', [StudentController::class, 'options']);
+            $student->get('/courses', [StudentController::class, 'courses'])
+                ->add(new AuthenticationMiddleware);
+            $student->options('/courses', [StudentController::class, 'options']);
+            $student->get('/labs', [StudentController::class, 'labs'])
+                ->add(new AuthenticationMiddleware);
+            $student->options('/labs', [StudentController::class, 'options']);
+            $student->get('/stats', [StudentController::class, 'stats'])
+                ->add(new AuthenticationMiddleware);
+            $student->options('/stats', [StudentController::class, 'options']);
+            $student->get('/{id}', [StudentController::class, 'getById']);
+            $student->get('/labs/{labId}', [StudentController::class, 'getLabById'])
+                ->add(new AuthenticationMiddleware);
+            $student->put('/labs/{labId}', [StudentController::class, 'updateLab'])
+                ->add(new AuthenticationMiddleware);
+            $student->options('/labs/{labId}', [StudentController::class, 'options']);
         });
+
 
         // Instructor Endpoints
         $group->group('/instructors', function (RouteCollectorProxy $instructor) {
