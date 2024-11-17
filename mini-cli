@@ -1,5 +1,14 @@
 <?php
 
+    /**
+     * Possible Operations
+     * 
+     * php mini-cli create-tables
+     * php mini-cli seed
+     * php mini-cli db-init (This will create table and seed)
+     * php mini-cli drop-db
+     */
+
     if (php_sapi_name() !== 'cli') {
         exit;
     }
