@@ -2,12 +2,25 @@
 
 namespace App\Controllers;
 
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
 /**
  * Provide features that us universal to all Controllers
  *
  */ 
 abstract class Controller
 {
+    /**
+     * General response for preflight check (options request)
+     * 
+     * @return  Response Response with 204 status
+     */
+    public function options(Request $request, Response $response)
+    {
+        return $response->withStatus(204);
+    }
+
     /**
      * Check if email is valid
      * 
